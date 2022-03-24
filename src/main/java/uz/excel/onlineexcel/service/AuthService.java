@@ -47,9 +47,10 @@ public class AuthService
 
     @Override
     public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
-        AuthUser user = repository.findByUsername(phone).orElseThrow(() -> {
-            throw new UsernameNotFoundException("User not found");
-        });
+//        AuthUser user = repository.findByUsername(phone).orElseThrow(() -> {
+//            throw new UsernameNotFoundException("User not found");
+//        });
+        AuthUser user = repository.findByUsername(phone).get();
         return User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
