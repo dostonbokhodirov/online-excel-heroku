@@ -16,7 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema = "auth", name = "auth_user")
+@Table(name = "auth_user")
 public class AuthUser extends Auditable implements GrantedAuthority {
 
     @Column

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(schema = "auth")
+@Table
 @ToString
 public class Student extends Auditable {
 
