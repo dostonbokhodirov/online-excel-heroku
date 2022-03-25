@@ -188,6 +188,7 @@ public class StudentService
         Optional<Student> student = repository.findById(id);
         if (student.isPresent()) {
             StudentDto studentDto = mapper.toDto(student.get());
+            studentDto.setId(student.get().getId());
             return new ResponseEntity<>(new DataDto<>(studentDto));
         } else {
             return new ResponseEntity<>(new DataDto<>(AppErrorDto
