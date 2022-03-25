@@ -1,14 +1,14 @@
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-54-160-109-68.compute-1.amazonaws.com:5432/db26hfv4nq7p77
-    username: bdnyqqmxgxvrnu
-    password: 79dedd3d3fa8976e89c4b112bbcff2ac5a320fb619ce4234cf8554996e6cb560
-
 #    driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://localhost:5432/online_excel
-#    username: doston
-#    password: doston123
+#    url: jdbc:postgresql://ec2-54-160-109-68.compute-1.amazonaws.com:5432/db26hfv4nq7p77
+#    username: bdnyqqmxgxvrnu
+#    password: 79dedd3d3fa8976e89c4b112bbcff2ac5a320fb619ce4234cf8554996e6cb560
+
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/online_excel
+    username: doston
+    password: doston123
   jpa:
     show-sql: true
     hibernate:

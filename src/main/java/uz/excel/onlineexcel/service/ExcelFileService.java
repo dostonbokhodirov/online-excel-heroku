@@ -34,7 +34,13 @@ public class ExcelFileService implements BaseService {
         XSSFWorkbook workbook = new XSSFWorkbook();
         workbook.setWorkbookType(XSSFWorkbookType.XLSX);
         String fileName = System.currentTimeMillis() + UUID.randomUUID().toString();
-        File file = new File("src/main/resources/excelFileStorage/" + fileName + ".xlsx");
+        File file = new File("src/main/resources/" + fileName + ".xlsx");
+//        File file = new File("");
+        try {
+            file = File.createTempFile("src/main/resources/" + fileName, ".xlsx");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try (FileOutputStream outputStream = new FileOutputStream(file.getAbsolutePath())) {
 

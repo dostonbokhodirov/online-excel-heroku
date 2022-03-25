@@ -4,10 +4,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.excel.onlineexcel.controller.base.AbstractController;
 import uz.excel.onlineexcel.dto.student.StudentDto;
 import uz.excel.onlineexcel.service.ExcelFileService;
@@ -18,7 +15,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/excel/")
@@ -31,26 +27,26 @@ public class ExcelFileController extends AbstractController<ExcelFileService> {
         this.servletContext = servletContext;
     }
 
-    @GetMapping("/download")
-    public ResponseEntity<InputStreamResource> getExcelFile() throws IOException {
+    @PostMapping("/download")
+    public ResponseEntity<InputStreamResource> getExcelFile(@RequestBody ArrayList<StudentDto> dtoList) throws IOException {
 
-        List<StudentDto> dtoList = new ArrayList<>();
-        StudentDto dto = StudentDto.builder()
-                .fullName("a")
-                .universityName("a")
-                .entranceYear("a")
-                .graduationYear("a")
-                .faculty("a")
-                .speciality("a")
-                .studyType("a")
-                .academicType("a")
-                .diplomaSerial("a")
-                .diplomaRegistrationNumber("a")
-                .givenDate("a")
-                .academicLevel("a")
-                .appendixNumber("a")
-                .organizationId(1L).build();
-        dtoList.add(dto);
+//        List<StudentDto> dtoList = new ArrayList<>();
+//        StudentDto dto = StudentDto.builder()
+//                .fullName("a")
+//                .universityName("a")
+//                .entranceYear("a")
+//                .graduationYear("a")
+//                .faculty("a")
+//                .speciality("a")
+//                .studyType("a")
+//                .academicType("a")
+//                .diplomaSerial("a")
+//                .diplomaRegistrationNumber("a")
+//                .givenDate("a")
+//                .academicLevel("a")
+//                .appendixNumber("a")
+//                .organizationId(1L).build();
+//        dtoList.add(dto);
 
         String excelFileName = service.createExcelFile(dtoList);
         MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, excelFileName);

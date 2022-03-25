@@ -4,6 +4,7 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.springframework.stereotype.Component;
 import uz.excel.onlineexcel.dto.student.StudentCreateDto;
 import uz.excel.onlineexcel.dto.student.StudentDto;
 import uz.excel.onlineexcel.dto.student.StudentUpdateDto;
@@ -13,6 +14,7 @@ import uz.excel.onlineexcel.mapper.base.BaseMapper;
 import java.util.List;
 
 
+@Component
 @Mapper(componentModel = "spring")
 public interface StudentMapper extends BaseMapper<Student, StudentDto, StudentCreateDto, StudentUpdateDto> {
 
