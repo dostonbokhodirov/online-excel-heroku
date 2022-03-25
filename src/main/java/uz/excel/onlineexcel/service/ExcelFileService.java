@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -173,7 +174,7 @@ public class ExcelFileService implements BaseService {
             List<Student> students1 = students.stream().filter(student -> !(student.getFullName().equals("")
                     && student.getDiplomaSerial().equals("")
                     && student.getDiplomaRegistrationNumber().equals("")
-                    && student.getEntranceYear().equals(""))).toList();
+                    && student.getEntranceYear().equals(""))).collect(Collectors.toList());
             repository.saveAll(students1);
         } catch (IOException e) {
             e.printStackTrace();
