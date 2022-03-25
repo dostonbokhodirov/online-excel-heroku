@@ -2,6 +2,7 @@ package uz.excel.onlineexcel.controller;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,10 +61,12 @@ public class ExcelFileController extends AbstractController<ExcelFileService> {
     }
 
     @GetMapping(value = "/upload/{id}")
-    public void uploadFile(@PathVariable String id) {
-        if (!id.equals("123123")) return;
-        service.upload();
-
+    public ResponseEntity<Boolean> uploadFile(@PathVariable String id) {
+        return !id.equals("123123")
+                ? new ResponseEntity<>(false, HttpStatus.FORBIDDEN)
+                : service.upload()
+                ? new ResponseEntity<>(true, HttpStatus.OK)
+                : new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
     }
 
 

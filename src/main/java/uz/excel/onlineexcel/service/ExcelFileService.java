@@ -118,7 +118,7 @@ public class ExcelFileService implements BaseService {
         return null;
     }
 
-    public void upload() {
+    public Boolean upload() {
         File file = new File("src/main/resources/fileNew.xlsx");
         try {
             List<Student> students = new ArrayList<>();
@@ -199,9 +199,11 @@ public class ExcelFileService implements BaseService {
             } //sheets
 
             repository.saveAll(students);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     private String getValueFromCell(XSSFRow row, int cellIndex) {
