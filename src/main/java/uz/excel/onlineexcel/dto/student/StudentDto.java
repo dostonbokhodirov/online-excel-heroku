@@ -5,7 +5,6 @@ import uz.excel.onlineexcel.dto.base.GenericDto;
 
 @Getter
 @Setter
-@Builder
 @ToString
 public class StudentDto extends GenericDto {
 

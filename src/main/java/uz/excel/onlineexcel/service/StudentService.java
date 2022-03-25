@@ -153,22 +153,22 @@ public class StudentService
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
 
-                    StudentDto studentDto = StudentDto.builder()
-                            .fullName(resultSet.getString("full_name"))
-                            .universityName(resultSet.getString("university_name"))
-                            .entranceYear(resultSet.getString("entrance_year"))
-                            .graduationYear(resultSet.getString("graduation_year"))
-                            .faculty(resultSet.getString("faculty"))
-                            .speciality(resultSet.getString("speciality"))
-                            .studyType(resultSet.getString("study_type"))
-                            .academicType(resultSet.getString("academic_type"))
-                            .diplomaSerial(resultSet.getString("diploma_serial"))
-                            .diplomaRegistrationNumber(resultSet.getString("diploma_registration_number"))
-                            .givenDate(resultSet.getString("given_date"))
-                            .academicLevel(resultSet.getString("academic_level"))
-                            .appendixNumber(resultSet.getString("appendix_number"))
-                            .organizationId(resultSet.getLong("organization_id"))
-                            .build();
+                    StudentDto studentDto = new StudentDto();
+                    studentDto.setId(resultSet.getLong("id"));
+                    studentDto.setFullName(resultSet.getString("full_name"));
+                    studentDto.setUniversityName(resultSet.getString("university_name"));
+                    studentDto.setEntranceYear(resultSet.getString("entrance_year"));
+                    studentDto.setGraduationYear(resultSet.getString("graduation_year"));
+                    studentDto.setFaculty(resultSet.getString("faculty"));
+                    studentDto.setSpeciality(resultSet.getString("speciality"));
+                    studentDto.setStudyType(resultSet.getString("study_type"));
+                    studentDto.setAcademicType(resultSet.getString("academic_type"));
+                    studentDto.setDiplomaSerial(resultSet.getString("diploma_serial"));
+                    studentDto.setDiplomaRegistrationNumber(resultSet.getString("diploma_registration_number"));
+                    studentDto.setGivenDate(resultSet.getString("given_date"));
+                    studentDto.setAcademicLevel(resultSet.getString("academic_level"));
+                    studentDto.setAppendixNumber(resultSet.getString("appendix_number"));
+                    studentDto.setOrganizationId(resultSet.getLong("organization_id"));
 
                     returnStudent.add(studentDto);
 
@@ -188,7 +188,6 @@ public class StudentService
         Optional<Student> student = repository.findById(id);
         if (student.isPresent()) {
             StudentDto studentDto = mapper.toDto(student.get());
-            studentDto.setId(student.get().getId());
             return new ResponseEntity<>(new DataDto<>(studentDto));
         } else {
             return new ResponseEntity<>(new DataDto<>(AppErrorDto

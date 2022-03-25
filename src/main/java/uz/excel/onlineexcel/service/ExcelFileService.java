@@ -157,22 +157,21 @@ public class ExcelFileService implements BaseService {
                     String academicLevel = getValueFromCell(row, 12);
                     String appendixNumber = getValueFromCell(row, 13);
 
-                    Student student = Student.builder()
-                            .universityName(universityName)
-                            .fullName(fullName)
-                            .entranceYear(entranceYear)
-                            .graduationYear(graduationYear)
-                            .faculty(faculty)
-                            .speciality(speciality)
-                            .studyType(studyType)
-                            .academicType(academicType)
-                            .diplomaSerial(diplomaSerial)
-                            .diplomaRegistrationNumber(diplomaRegistrationNumber)
-                            .givenDate(givenDate)
-                            .academicLevel(academicLevel)
-                            .appendixNumber(appendixNumber)
-                            .organizationId(1L)
-                            .build();
+                    Student student = new Student();
+                    student.setUniversityName(universityName);
+                    student.setFullName(fullName);
+                    student.setEntranceYear(entranceYear);
+                    student.setGraduationYear(graduationYear);
+                    student.setFaculty(faculty);
+                    student.setSpeciality(speciality);
+                    student.setStudyType(studyType);
+                    student.setAcademicType(academicType);
+                    student.setDiplomaSerial(diplomaSerial);
+                    student.setDiplomaRegistrationNumber(diplomaRegistrationNumber);
+                    student.setGivenDate(givenDate);
+                    student.setAcademicLevel(academicLevel);
+                    student.setAppendixNumber(appendixNumber);
+                    student.setOrganizationId(1L);
 
                     if (
                             !(
