@@ -1,4 +1,4 @@
-package uz.excel.onlineexcel.config.security.encriprion;
+package uz.excel.onlineexcel.config.security.encription;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

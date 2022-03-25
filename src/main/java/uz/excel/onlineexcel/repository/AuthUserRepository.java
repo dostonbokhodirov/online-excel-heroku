@@ -10,7 +10,6 @@ import java.util.Optional;
 
 public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, BaseRepository {
 
-
     Optional<AuthUser> findByIdAndStatus(Long id, Status status);
 
     Optional<List<AuthUser>> findByOrganizationIdAndStatus(Long organizationId, Status status);

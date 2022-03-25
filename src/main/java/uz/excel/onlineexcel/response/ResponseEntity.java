@@ -14,6 +14,7 @@ public class ResponseEntity<T> implements BaseResponse {
 
     public ResponseEntity(T data) {
         this(data, HttpStatus.OK);
+
     }
 
     public ResponseEntity(T data, HttpStatus status) {

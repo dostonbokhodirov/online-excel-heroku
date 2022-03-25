@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import uz.excel.onlineexcel.config.security.filters.CustomAuthenticationFilter;
 import uz.excel.onlineexcel.config.security.filters.CustomAuthorizationFilter;
+import uz.excel.onlineexcel.config.security.utils.SecurityUtils;
 import uz.excel.onlineexcel.service.AuthService;
 
 @EnableWebSecurity
@@ -22,15 +23,7 @@ import uz.excel.onlineexcel.service.AuthService;
         prePostEnabled = true
 )
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
-    public final static String[] WHITE_LIST = {
-            "/**",
-            "/auth/token",
-            "/auth/refresh-token",
-            "/auth/register",
-            "/swagger-ui/**",
-            "/api-docs/**",
-            "/api/v1/log/**"
-    };
+
     private final AuthService userService;
     private final PasswordEncoder passwordEncoder;
 
@@ -45,7 +38,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.cors().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-                .antMatchers(WHITE_LIST)
+                .antMatchers(SecurityUtils.WHITE_LIST)
                 .permitAll()
                 .anyRequest().authenticated();
 

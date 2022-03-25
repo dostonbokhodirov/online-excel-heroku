@@ -20,13 +20,8 @@ public class DataDto<T> implements Serializable {
 
     private Long totalCount;
 
-//    public DataDto(boolean success) {
-//        this.success = success;
-//    }
-
     public DataDto(T data) {
-        this.data = data;
-        this.success = true;
+        this(data, 1L);
     }
 
     public DataDto(AppErrorDto error) {

@@ -15,7 +15,7 @@ public interface StudentRepository extends JpaRepository<Student, Long>, BaseRep
 
     @Transactional
     @Modifying
-    @Query(value = "select * from auth.student order by entrance_year desc limit 50", nativeQuery = true)
+    @Query(value = "select * from public.student order by entrance_year desc limit 50", nativeQuery = true)
     List<Student> findAllByCount();
 
 

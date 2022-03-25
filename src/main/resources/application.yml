@@ -1,9 +1,14 @@
 spring:
   datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://ec2-3-227-55-25.compute-1.amazonaws.com:5432/d1q68v8hsn921r
+#    username: brtozecldfvewq
+#    password: 76e1ac1ccac120a2727c2713ee3f129ae64778c3be344088da1d27a16c3f33a9
+
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-3-227-55-25.compute-1.amazonaws.com:5432/d1q68v8hsn921r
-    username: brtozecldfvewq
-    password: 76e1ac1ccac120a2727c2713ee3f129ae64778c3be344088da1d27a16c3f33a9
+    url: jdbc:postgresql://localhost:5432/online_excel
+    username: doston
+    password: doston123
   jpa:
     show-sql: true
     hibernate:
@@ -29,12 +34,12 @@ service:
 
 api:
   info:
-    title: Excel
-    description: nimadir yozamish kerak
+    title: Online Excel Swagger
+    description: Swagger
     version: 1.0
     terms-of-service: https://unicorn.pdp.uz
     contact-name: pdp.uz
-    contact-email: mutalov7777@gmail.com
+    contact-email: example@gmail.com
     contact-url: https://pdp.uz
     license-name: Apache 2.0
     license-url: https://www.apache.org/licenses/LICENSE-2.0.html

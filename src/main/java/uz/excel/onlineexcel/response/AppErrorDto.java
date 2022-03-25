@@ -10,6 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author johnl
@@ -32,7 +33,9 @@ public class AppErrorDto {
         this.status = status.value();
         this.error = status.getReasonPhrase();
         this.message = message;
-        this.path = ((ServletWebRequest) request).getRequest().getRequestURI();
+        if (Objects.nonNull(request)) {
+            this.path = ((ServletWebRequest) request).getRequest().getRequestURI();
+        }
     }
 
     @Builder(builderMethodName = "secondBuilder")
