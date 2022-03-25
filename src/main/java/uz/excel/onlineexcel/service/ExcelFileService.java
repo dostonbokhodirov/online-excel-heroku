@@ -130,7 +130,7 @@ public class ExcelFileService implements BaseService {
             //total number of sheets
             int numberOfSheets = workbook.getNumberOfSheets();
 
-            for (int sheetIndex = 0; sheetIndex < numberOfSheets; sheetIndex++) {
+            for (int sheetIndex = 0; sheetIndex < 3; sheetIndex++) {
                 //sheet at current index
                 XSSFSheet sheetAt = workbook.getSheetAt(sheetIndex);
 
