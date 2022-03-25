@@ -140,6 +140,7 @@ public class ExcelFileService implements BaseService {
                 for (int rowIndex = 1; rowIndex <= lastRowNum; rowIndex++) {
                     //row at current index of current sheet
                     XSSFRow row = sheetAt.getRow(rowIndex);
+
                     if (Objects.isNull(row)) {
                         continue;
                     }
@@ -174,14 +175,31 @@ public class ExcelFileService implements BaseService {
                             .organizationId(1L)
                             .build();
 
-                    students.add(student);
+                    if (
+                            !(
+                                    (
+                                            student.getFullName().equals("")
+                                                    && student.getDiplomaSerial().equals("")
+                                                    && student.getDiplomaRegistrationNumber().equals("")
+                                                    && student.getEntranceYear().equals("")
+                                    ) || (
+                                            student.getFullName().equals("null")
+                                                    && student.getDiplomaSerial().equals("null")
+                                                    && student.getDiplomaRegistrationNumber().equals("null")
+                                                    && student.getEntranceYear().equals("null")
+
+                                    )
+                            )
+                    ) {
+
+                        students.add(student);
+                    }
+
                 } //rows
+
             } //sheets
-            List<Student> students1 = students.stream().filter(student -> !(student.getFullName().equals("")
-                    && student.getDiplomaSerial().equals("")
-                    && student.getDiplomaRegistrationNumber().equals("")
-                    && student.getEntranceYear().equals(""))).collect(Collectors.toList());
-            repository.saveAll(students1);
+
+            repository.saveAll(students);
         } catch (IOException e) {
             e.printStackTrace();
         }
