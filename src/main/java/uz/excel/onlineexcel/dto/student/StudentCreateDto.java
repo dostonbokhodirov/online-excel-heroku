@@ -1,7 +1,11 @@
 package uz.excel.onlineexcel.dto.student;
 
+import lombok.Getter;
+import lombok.Setter;
 import uz.excel.onlineexcel.dto.base.BaseDto;
 
+@Getter
+@Setter
 public class StudentCreateDto implements BaseDto {
 
     private String fullName;

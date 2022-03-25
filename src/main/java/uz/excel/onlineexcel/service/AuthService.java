@@ -93,4 +93,9 @@ public class AuthService
     public ResponseEntity<DataDto<SessionDto>> refreshToken(HttpServletRequest request, HttpServletResponse response) {
         return null;
     }
+
+    public void create(AuthUserCreateDto dto) {
+        AuthUser authUser = mapper.fromCreateDto(dto);
+        repository.save(authUser);
+    }
 }

@@ -2,10 +2,13 @@ package uz.excel.onlineexcel;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import uz.excel.onlineexcel.dto.auth.AuthUserCreateDto;
 import uz.excel.onlineexcel.property.OpenApiProperties;
 import uz.excel.onlineexcel.property.ServerProperties;
 import uz.excel.onlineexcel.service.AuthService;
@@ -30,12 +33,12 @@ public class OnlineExcelApplication {
         SpringApplication.run(OnlineExcelApplication.class, args);
     }
 
-//    @Bean
-//    CommandLineRunner run() {
-//        return args -> {
-//            userService.create(new AuthUserCreateDto("123", passwordEncoder.encode("123"),
-//                    "Saydali", "+998973130080", "Saydali@gmail.com"));
-//        };
-//    }
+    @Bean
+    CommandLineRunner run() {
+        return args -> {
+            userService.create(new AuthUserCreateDto("123", passwordEncoder.encode("123"),
+                    "Saydali", "+998973130080", "Saydali@gmail.com"));
+        };
+    }
 
 }
