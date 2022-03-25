@@ -1,11 +1,11 @@
 package uz.excel.onlineexcel.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
 import org.springframework.stereotype.Service;
 import uz.excel.onlineexcel.dto.student.StudentDto;
 import uz.excel.onlineexcel.entity.Student;
@@ -13,10 +13,10 @@ import uz.excel.onlineexcel.repository.StudentRepository;
 import uz.excel.onlineexcel.service.base.BaseService;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.io.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -138,9 +138,6 @@ public class ExcelFileService implements BaseService {
                     }
                     String universityName = getValueFromCell(row, 1);
                     String fullName = getValueFromCell(row, 2);
-                    if (Objects.equals(fullName, "")) {
-                        fullName = "" + sheetAt.getSheetName() + "===>" + row.getRowNum() + getValueFromCell(row, 0);
-                    }
                     String entranceYear = getValueFromCell(row, 3);
                     String graduationYear = getValueFromCell(row, 4);
                     String faculty = getValueFromCell(row, 5);
@@ -173,7 +170,11 @@ public class ExcelFileService implements BaseService {
                     students.add(student);
                 } //rows
             } //sheets
-            repository.saveAll(students);
+            List<Student> students1 = students.stream().filter(student -> !(student.getFullName().equals("")
+                    && student.getDiplomaSerial().equals("")
+                    && student.getDiplomaRegistrationNumber().equals("")
+                    && student.getEntranceYear().equals(""))).toList();
+            repository.saveAll(students1);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -28,7 +28,7 @@ public class ExcelFileController extends AbstractController<ExcelFileService> {
     }
 
     @GetMapping("/download")
-    public ResponseEntity<InputStreamResource> getExcelFile(@RequestBody List<StudentDto> dtoList) throws IOException {
+    public ResponseEntity<InputStreamResource> getExcelFile(List<StudentDto> dtoList) throws IOException {
         String excelFileName = service.createExcelFile(dtoList);
         MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, excelFileName);
         File file = new File(excelFileName);
