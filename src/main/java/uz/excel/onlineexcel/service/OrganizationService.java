@@ -68,7 +68,7 @@ public class OrganizationService
     public ResponseEntity<DataDto<List<OrganizationDto>>> getAll() {
         List<Organization> organizationList = repository.findAll();
         List<OrganizationDto> organizationDtoList = mapper.toDto(organizationList);
-        return new ResponseEntity<>(new DataDto<>(organizationDtoList));
+        return new ResponseEntity<>(new DataDto<>(organizationDtoList, (long) organizationDtoList.size()));
     }
 
 

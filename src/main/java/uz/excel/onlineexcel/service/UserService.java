@@ -74,7 +74,7 @@ public class UserService extends AbstractService<AuthUserMapper, AuthUserReposit
     public ResponseEntity<DataDto<List<AuthUserDto>>> getAll() {
         List<AuthUser> authUserList = repository.findAll();
         List<AuthUserDto> authUserDtoList = mapper.toDto(authUserList);
-        return new ResponseEntity<>(new DataDto<>(authUserDtoList));
+        return new ResponseEntity<>(new DataDto<>(authUserDtoList, (long) authUserDtoList.size()));
     }
 
     public ResponseEntity<DataDto<Long>> update(AuthUserUpdateDto dto) {

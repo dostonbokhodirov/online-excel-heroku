@@ -200,7 +200,8 @@ public class StudentService
 
     @Override
     public ResponseEntity<DataDto<List<StudentDto>>> getAll() {
-        return new ResponseEntity<>(new DataDto<>(mapper.toDto(repository.findAllByCount())));
+        List<StudentDto> studentDtoList = mapper.toDto(repository.findAllByCount());
+        return new ResponseEntity<>(new DataDto<>(studentDtoList, (long) studentDtoList.size()));
     }
 
     @Override
