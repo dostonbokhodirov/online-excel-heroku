@@ -130,14 +130,14 @@ public class ExcelFileService implements BaseService {
             //total number of sheets
             int numberOfSheets = workbook.getNumberOfSheets();
 
-            for (int sheetIndex = 0; sheetIndex < 3; sheetIndex++) {
+            for (int sheetIndex = 0; sheetIndex < 1; sheetIndex++) {
                 //sheet at current index
                 XSSFSheet sheetAt = workbook.getSheetAt(sheetIndex);
 
                 //total count of rows in current sheet
                 int lastRowNum = sheetAt.getLastRowNum();
 
-                for (int rowIndex = 1; rowIndex <= lastRowNum; rowIndex++) {
+                for (int rowIndex = 1; rowIndex <= 20; rowIndex++) {
                     //row at current index of current sheet
                     XSSFRow row = sheetAt.getRow(rowIndex);
 
