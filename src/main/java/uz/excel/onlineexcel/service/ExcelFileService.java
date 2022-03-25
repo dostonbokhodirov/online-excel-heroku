@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -120,7 +119,7 @@ public class ExcelFileService implements BaseService {
     }
 
     public void upload() {
-        File file = new File("src/main/resources/filelarnew.xlsx");
+        File file = new File("src/main/resources/fileNew.xlsx");
         try {
             List<Student> students = new ArrayList<>();
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -130,14 +129,14 @@ public class ExcelFileService implements BaseService {
             //total number of sheets
             int numberOfSheets = workbook.getNumberOfSheets();
 
-            for (int sheetIndex = 0; sheetIndex < 1; sheetIndex++) {
+            for (int sheetIndex = 0; sheetIndex < numberOfSheets; sheetIndex++) {
                 //sheet at current index
                 XSSFSheet sheetAt = workbook.getSheetAt(sheetIndex);
 
                 //total count of rows in current sheet
                 int lastRowNum = sheetAt.getLastRowNum();
 
-                for (int rowIndex = 1; rowIndex <= 20; rowIndex++) {
+                for (int rowIndex = 1; rowIndex <= lastRowNum; rowIndex++) {
                     //row at current index of current sheet
                     XSSFRow row = sheetAt.getRow(rowIndex);
 
