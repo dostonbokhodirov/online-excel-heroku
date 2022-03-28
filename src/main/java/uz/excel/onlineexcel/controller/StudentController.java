@@ -30,7 +30,7 @@ public class StudentController extends AbstractController<StudentService> {
         return service.create(dto);
     }
 
-    @PatchMapping(value = "update")
+    @PostMapping(value = "update")
     public ResponseEntity<DataDto<Long>> update(@RequestBody StudentUpdateDto dto) {
         return service.update(dto);
     }
