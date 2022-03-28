@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/excel/")
 public class ExcelFileController extends AbstractController<ExcelFileService> {

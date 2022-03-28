@@ -11,6 +11,7 @@ import uz.excel.onlineexcel.service.OrganizationService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/organization/")
 public class OrganizationController extends AbstractController<OrganizationService> {
