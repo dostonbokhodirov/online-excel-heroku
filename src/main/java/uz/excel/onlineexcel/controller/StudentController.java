@@ -12,7 +12,7 @@ import uz.excel.onlineexcel.service.StudentService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "")
 @RestController
 @RequestMapping("/student/")
 public class StudentController extends AbstractController<StudentService> {

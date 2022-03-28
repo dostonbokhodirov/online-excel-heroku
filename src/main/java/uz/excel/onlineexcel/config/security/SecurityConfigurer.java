@@ -21,6 +21,7 @@ import uz.excel.onlineexcel.config.security.utils.SecurityUtils;
 import uz.excel.onlineexcel.service.AuthService;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @EnableWebSecurity
@@ -75,7 +76,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:8080"));
+        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:8080"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
