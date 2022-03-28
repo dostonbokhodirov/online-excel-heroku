@@ -34,6 +34,13 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     private final AuthService userService;
     private final PasswordEncoder passwordEncoder;
 
+
+
+    @Bean
+    CorsFilter corsFilter() {
+        return new CorsFilter();
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
@@ -49,9 +56,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 //                .configurationSource(request -> new CorsConfiguration()
 //                        .applyPermitDefaultValues());
 
-        http
-                .cors().
-                configurationSource(corsConfigurationSource());
+//        http
+//                .cors().
+//                configurationSource(corsConfigurationSource());
 
         http
                 .csrf()
@@ -73,15 +80,15 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:8080"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:8080"));
+//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
 
 
 }
