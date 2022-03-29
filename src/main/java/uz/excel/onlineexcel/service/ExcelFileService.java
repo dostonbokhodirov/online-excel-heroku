@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.excel.onlineexcel.dto.student.StudentDto;
 import uz.excel.onlineexcel.entity.Student;
+import uz.excel.onlineexcel.enums.AcademicLevel;
+import uz.excel.onlineexcel.enums.AcademicType;
+import uz.excel.onlineexcel.enums.StudyType;
 import uz.excel.onlineexcel.repository.StudentRepository;
 import uz.excel.onlineexcel.service.base.BaseService;
 
@@ -149,12 +152,68 @@ public class ExcelFileService implements BaseService {
                     String graduationYear = getValueFromCell(row, 4);
                     String faculty = getValueFromCell(row, 5);
                     String speciality = getValueFromCell(row, 6);
+
+
                     String studyType = getValueFromCell(row, 7);
+
+                    if (studyType.toLowerCase().startsWith(
+                            StudyType.GRANT.getCyrillic().toLowerCase().substring(0, 3))) {
+                        studyType = StudyType.GRANT.getCyrillic();
+                    } else if (studyType.toLowerCase().startsWith(
+                            StudyType.GRANT.getLatin().toLowerCase().substring(0, 3))) {
+                        studyType = StudyType.GRANT.getLatin();
+                    } else if (studyType.toLowerCase().startsWith(
+                            StudyType.CONTRACT.getCyrillic().toLowerCase().substring(0, 3))) {
+                        studyType = StudyType.CONTRACT.getCyrillic();
+                    } else if (studyType.toLowerCase().startsWith(
+                            StudyType.CONTRACT.getLatin().toLowerCase().substring(0, 3))) {
+                        studyType = StudyType.CONTRACT.getLatin();
+                    }
+
                     String academicType = getValueFromCell(row, 8);
+
+                    if (academicType.toLowerCase().startsWith(
+                            AcademicType.FULL_TIME.getCyrillic().toLowerCase().substring(0, 3))) {
+                        academicType = AcademicType.FULL_TIME.getCyrillic();
+                    } else if (academicType.toLowerCase().startsWith(
+                            AcademicType.FULL_TIME.getLatin().toLowerCase().substring(0, 3))) {
+                        academicType = AcademicType.FULL_TIME.getLatin();
+                    } else if (academicType.toLowerCase().startsWith(
+                            AcademicType.EVENING.getCyrillic().toLowerCase().substring(0, 3))) {
+                        academicType = AcademicType.EVENING.getCyrillic();
+                    } else if (academicType.toLowerCase().startsWith(
+                            AcademicType.EVENING.getLatin().toLowerCase().substring(0, 3))) {
+                        academicType = AcademicType.EVENING.getLatin();
+                    } else if (academicType.toLowerCase().startsWith(
+                            AcademicType.DISTANCE.getCyrillic().toLowerCase().substring(0, 3))) {
+                        academicType = AcademicType.DISTANCE.getCyrillic();
+                    } else if (academicType.toLowerCase().startsWith(
+                            AcademicType.DISTANCE.getLatin().toLowerCase().substring(0, 3))) {
+                        academicType = AcademicType.DISTANCE.getLatin();
+                    }
+
+
                     String diplomaSerial = getValueFromCell(row, 9);
                     String diplomaRegistrationNumber = getValueFromCell(row, 10);
                     String givenDate = getValueFromCell(row, 11);
+
                     String academicLevel = getValueFromCell(row, 12);
+
+                    if (academicLevel.toLowerCase().startsWith(
+                            AcademicLevel.BACHELOR.getCyrillic().toLowerCase().substring(0, 3))) {
+                        academicLevel = AcademicLevel.BACHELOR.getCyrillic();
+                    } else if (academicLevel.toLowerCase().startsWith(
+                            AcademicLevel.BACHELOR.getLatin().toLowerCase().substring(0, 3))) {
+                        academicLevel = AcademicLevel.BACHELOR.getLatin();
+                    } else if (academicLevel.toLowerCase().startsWith(
+                            AcademicLevel.MASTER.getCyrillic().toLowerCase().substring(0, 3))) {
+                        academicLevel = AcademicLevel.MASTER.getCyrillic();
+                    } else if (academicLevel.toLowerCase().startsWith(
+                            AcademicLevel.MASTER.getLatin().toLowerCase().substring(0, 3))) {
+                        academicLevel = AcademicLevel.MASTER.getLatin();
+                    }
+
+
                     String appendixNumber = getValueFromCell(row, 13);
 
                     Student student = new Student();

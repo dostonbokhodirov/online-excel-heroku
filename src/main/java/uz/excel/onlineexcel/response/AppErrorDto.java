@@ -46,4 +46,9 @@ public class AppErrorDto {
         this.message = message;
         this.path = path;
     }
+
+    @Builder(builderMethodName = "thirdBuilder")
+    public AppErrorDto(HttpStatus status, String message) {
+        this(status, message, "");
+    }
 }
