@@ -18,15 +18,27 @@ public class EnumController extends AbstractController<EnumService> {
         super(service);
     }
 
+    /**
+     * @param language String value as latin or cyrillic
+     */
+
     @GetMapping("study-type-list")
     public ResponseEntity<DataDto<List<String>>> getAllStudyTypes(String language) {
         return service.getAllStudyTypes(language);
     }
 
+    /**
+     * @param language String value as latin or cyrillic
+     */
+
     @GetMapping("academic-type-list")
     public ResponseEntity<DataDto<List<String>>> getAllAcademicTypes(String language) {
         return service.getAllAcademicTypes(language);
     }
+
+    /**
+     * @param language String value as latin or cyrillic
+     */
 
     @GetMapping("academic-level-list")
     public ResponseEntity<DataDto<List<String>>> getAllAcademicLevels(String language) {

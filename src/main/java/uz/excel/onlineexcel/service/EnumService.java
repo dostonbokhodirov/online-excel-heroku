@@ -22,13 +22,13 @@ public class EnumService implements BaseService {
             for (StudyType studyType : StudyType.values()) {
                 studyTypeList.add(studyType.getLatin());
             }
-            return new ResponseEntity<>(new DataDto<>(studyTypeList));
+            return new ResponseEntity<>(new DataDto<>(studyTypeList, (long) studyTypeList.size()));
         }
         if (language.equalsIgnoreCase("cyrillic")) {
             for (StudyType studyType : StudyType.values()) {
                 studyTypeList.add(studyType.getCyrillic());
             }
-            return new ResponseEntity<>(new DataDto<>(studyTypeList));
+            return new ResponseEntity<>(new DataDto<>(studyTypeList, (long) studyTypeList.size()));
         }
         return new ResponseEntity<>
                 (new DataDto<>(new AppErrorDto(HttpStatus.BAD_REQUEST, "Language is not available")));
@@ -40,13 +40,13 @@ public class EnumService implements BaseService {
             for (AcademicType academicType : AcademicType.values()) {
                 academicTypeList.add(academicType.getLatin());
             }
-            return new ResponseEntity<>(new DataDto<>(academicTypeList));
+            return new ResponseEntity<>(new DataDto<>(academicTypeList, (long) academicTypeList.size()));
         }
         if (language.equalsIgnoreCase("cyrillic")) {
             for (AcademicType academicType : AcademicType.values()) {
                 academicTypeList.add(academicType.getCyrillic());
             }
-            return new ResponseEntity<>(new DataDto<>(academicTypeList));
+            return new ResponseEntity<>(new DataDto<>(academicTypeList, (long) academicTypeList.size()));
         }
         return new ResponseEntity<>
                 (new DataDto<>(new AppErrorDto(HttpStatus.BAD_REQUEST, "Language is not available")));
@@ -58,13 +58,13 @@ public class EnumService implements BaseService {
             for (AcademicLevel academicLevel : AcademicLevel.values()) {
                 academicLevelList.add(academicLevel.getLatin());
             }
-            return new ResponseEntity<>(new DataDto<>(academicLevelList));
+            return new ResponseEntity<>(new DataDto<>(academicLevelList, (long) academicLevelList.size()));
         }
         if (language.equalsIgnoreCase("cyrillic")) {
             for (AcademicLevel academicLevel : AcademicLevel.values()) {
                 academicLevelList.add(academicLevel.getCyrillic());
             }
-            return new ResponseEntity<>(new DataDto<>(academicLevelList));
+            return new ResponseEntity<>(new DataDto<>(academicLevelList, (long) academicLevelList.size()));
         }
         return new ResponseEntity<>
                 (new DataDto<>(new AppErrorDto(HttpStatus.BAD_REQUEST, "Language is not available")));
