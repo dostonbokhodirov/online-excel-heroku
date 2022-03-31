@@ -1,11 +1,13 @@
 package uz.excel.onlineexcel.dto.student;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import uz.excel.onlineexcel.dto.base.GenericDto;
 
 @Getter
 @Setter
-@Builder
 @ToString
 public class StudentDto extends GenericDto {
 
@@ -37,4 +39,42 @@ public class StudentDto extends GenericDto {
 
     private Long organizationId;
 
+    @Builder
+    public StudentDto(Long id, String fullName, String universityName, String entranceYear,
+                      String graduationYear, String faculty, String speciality, String studyType,
+                      String academicType, String diplomaSerial, String diplomaRegistrationNumber,
+                      String givenDate, String academicLevel, String appendixNumber, Long organizationId) {
+        super(id);
+        this.fullName = fullName;
+        this.universityName = universityName;
+        this.entranceYear = entranceYear;
+        this.graduationYear = graduationYear;
+        this.faculty = faculty;
+        this.speciality = speciality;
+        this.studyType = studyType;
+        this.academicType = academicType;
+        this.diplomaSerial = diplomaSerial;
+        this.diplomaRegistrationNumber = diplomaRegistrationNumber;
+        this.givenDate = givenDate;
+        this.academicLevel = academicLevel;
+        this.appendixNumber = appendixNumber;
+        this.organizationId = organizationId;
+    }
+
+    public StudentDto(String fullName, String universityName, String entranceYear, String graduationYear, String faculty, String speciality, String studyType, String academicType, String diplomaSerial, String diplomaRegistrationNumber, String givenDate, String academicLevel, String appendixNumber, Long organizationId) {
+        this.fullName = fullName;
+        this.universityName = universityName;
+        this.entranceYear = entranceYear;
+        this.graduationYear = graduationYear;
+        this.faculty = faculty;
+        this.speciality = speciality;
+        this.studyType = studyType;
+        this.academicType = academicType;
+        this.diplomaSerial = diplomaSerial;
+        this.diplomaRegistrationNumber = diplomaRegistrationNumber;
+        this.givenDate = givenDate;
+        this.academicLevel = academicLevel;
+        this.appendixNumber = appendixNumber;
+        this.organizationId = organizationId;
+    }
 }

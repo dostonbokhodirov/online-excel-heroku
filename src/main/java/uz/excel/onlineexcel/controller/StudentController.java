@@ -45,7 +45,7 @@ public class StudentController extends AbstractController<StudentService> {
         return service.getAll();
     }
 
-    @GetMapping("filter")
+    @PostMapping("filter")
     public ResponseEntity<DataDto<List<StudentDto>>> getAllByFilter(@RequestBody FilterDto filterDto) {
         return service.getByFilter(filterDto);
     }

@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import uz.excel.onlineexcel.property.ConnectionProperties;
 import uz.excel.onlineexcel.property.OpenApiProperties;
 import uz.excel.onlineexcel.property.ServerProperties;
 
@@ -12,7 +13,8 @@ import uz.excel.onlineexcel.property.ServerProperties;
 @EnableConfigurationProperties(
         {
                 OpenApiProperties.class,
-                ServerProperties.class
+                ServerProperties.class,
+                ConnectionProperties.class
         }
 )
 @OpenAPIDefinition

@@ -1,9 +1,8 @@
 package uz.excel.onlineexcel.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExcelFileService implements BaseService {
 
-    @Autowired
     StudentRepository repository;
 
 
@@ -37,7 +35,6 @@ public class ExcelFileService implements BaseService {
         workbook.setWorkbookType(XSSFWorkbookType.XLSX);
         String fileName = System.currentTimeMillis() + UUID.randomUUID().toString();
         File file = new File("src/main/resources/" + fileName + ".xlsx");
-//        File file = new File("");
         try {
             file = File.createTempFile("src/main/resources/" + fileName, ".xlsx");
         } catch (IOException e) {
@@ -54,8 +51,7 @@ public class ExcelFileService implements BaseService {
             font.setFontName("Times New Roman");
             font.setBold(true);
 
-            CellStyle style = workbook.createCellStyle();
-            style.setFont(font);
+            CellStyle style = getCellStyle(workbook, font);
 
             List<String> rowNames = new ArrayList<>();
             rowNames.add("№");
@@ -83,13 +79,12 @@ public class ExcelFileService implements BaseService {
             font1.setFontHeightInPoints((short) 11);
             font1.setFontName("Times New Roman");
 
-            CellStyle style1 = workbook.createCellStyle();
-            style1.setFont(font1);
+            CellStyle style1 = getCellStyle(workbook, font1);
 
             for (int i = 0; i < list.size(); i++) {
 
                 XSSFRow row = xssfSheet.createRow(i + 1);
-                row.setRowStyle(style);
+//                row.setRowStyle(style1);
 
                 List<String> studentValues = new ArrayList<>();
                 studentValues.add(String.valueOf(i + 1));
@@ -291,5 +286,16 @@ public class ExcelFileService implements BaseService {
         } else {
             return String.valueOf(cell.getDateCellValue());
         }
+    }
+
+    private CellStyle getCellStyle(XSSFWorkbook workbook, Font font1) {
+        CellStyle style = workbook.createCellStyle();
+        style.setFont(font1);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        return style;
     }
 }
