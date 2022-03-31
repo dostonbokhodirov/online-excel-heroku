@@ -18,6 +18,7 @@ import uz.excel.onlineexcel.service.base.AbstractService;
 import uz.excel.onlineexcel.service.base.GenericCrudService;
 import uz.excel.onlineexcel.service.base.GenericService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -77,22 +78,28 @@ public class UserService extends AbstractService<AuthUserMapper, AuthUserReposit
     }
 
     public ResponseEntity<DataDto<Long>> update(AuthUserUpdateDto dto) {
-        try {
-            AuthUser authUser = repository.findById(dto.getId()).orElseThrow(() ->
-            {
-                throw new RuntimeException("User not found");
-            });
-            AuthUser authUser1 = mapper.fromUpdateDto(dto, authUser);
-            if (Objects.nonNull(dto.getPicture())) {
-                authUser1.setPicture(dto.getPicture().getBytes());
-            }
-            return new ResponseEntity<>(new DataDto<>(repository.save(authUser1).getId()), HttpStatus.OK);
-        } catch (Exception e) {
+        Optional<AuthUser> optional = repository.findById(dto.getId());
+        AuthUser authUser;
+        if (optional.isPresent()) {
+            authUser = mapper.fromUpdateDto(dto, optional.get());
+        } else {
             return new ResponseEntity<>(new DataDto<>(AppErrorDto
                     .builder()
                     .message("USER_NOT_FOUND")
                     .status(HttpStatus.NOT_FOUND)
                     .build()));
         }
+        if (Objects.nonNull(dto.getPicture())) {
+            try {
+                authUser.setPicture(dto.getPicture().getBytes());
+            } catch (IOException e) {
+                return new ResponseEntity<>(new DataDto<>(AppErrorDto
+                        .builder()
+                        .message("PROBLEM_WITH_PICTURE")
+                        .status(HttpStatus.BAD_REQUEST)
+                        .build()));
+            }
+        }
+        return new ResponseEntity<>(new DataDto<>(repository.save(authUser).getId()), HttpStatus.OK);
     }
 }
