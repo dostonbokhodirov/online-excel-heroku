@@ -39,7 +39,6 @@ public class UserService extends AbstractService<AuthUserMapper, AuthUserReposit
         try {
             AuthUser authUser = mapper.fromCreateDto(dto);
             authUser.setRole(AuthRole.EMPLOYEE);
-            authUser.setPicture(dto.getPicture().getBytes());
             authUser.setPassword(passwordEncoder.encode(dto.getPassword()));
             AuthUser save = repository.save(authUser);
             return new ResponseEntity<>(new DataDto<>(save.getId()), HttpStatus.OK);
@@ -74,13 +73,16 @@ public class UserService extends AbstractService<AuthUserMapper, AuthUserReposit
     public ResponseEntity<DataDto<List<AuthUserDto>>> getAll() {
         List<AuthUser> authUserList = repository.findAll();
         List<AuthUserDto> authUserDtoList = mapper.toDto(authUserList);
-        return new ResponseEntity<>(new DataDto<>(authUserDtoList, (long) authUserDtoList.size()));
+        return new ResponseEntity<>(new DataDto<>(authUserDtoList));
     }
 
     public ResponseEntity<DataDto<Long>> update(AuthUserUpdateDto dto) {
         try {
-            Optional<AuthUser> authUser = repository.findById(dto.getId());
-            AuthUser authUser1 = mapper.fromUpdateDto(dto, authUser.get());
+            AuthUser authUser = repository.findById(dto.getId()).orElseThrow(() ->
+            {
+                throw new RuntimeException("User not found");
+            });
+            AuthUser authUser1 = mapper.fromUpdateDto(dto, authUser);
             if (Objects.nonNull(dto.getPicture())) {
                 authUser1.setPicture(dto.getPicture().getBytes());
             }

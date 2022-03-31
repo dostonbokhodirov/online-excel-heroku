@@ -14,6 +14,7 @@ import uz.excel.onlineexcel.dto.base.GenericDto;
 public class AuthUserUpdateDto extends GenericDto {
 
     private Long id;
+
     private String username;
 
     private String password;
