@@ -35,6 +35,7 @@ public class StudentService
 
         List<StudentDto> returnStudent = new ArrayList<>(Collections.emptyList());
 
+
         if (Objects.isNull(filterDto)) {
             return getAll();
         } else {
@@ -43,107 +44,107 @@ public class StudentService
                 Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/online_excel", "postgres", "iPhone0303");
 
                 boolean isJoin = false;
-                StringBuilder query = new StringBuilder("select  * from auth.student where ");
+                StringBuilder query = new StringBuilder("select  *  from auth.student where ");
 
                 if (Objects.nonNull(filterDto.getFullName())) {
-                    query.append("full_name = ").append(filterDto.getFullName());
+                    query.append("full_name ilike '").append(filterDto.getFullName()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getUniversityName())) {
                     if (isJoin) {
-                        query.append(" and university_name = ").append(filterDto.getUniversityName());
+                        query.append(" and university_name ilike '").append(filterDto.getUniversityName()).append("'");
                     }
-                    query.append("university_name = ").append(filterDto.getUniversityName());
+                    query.append("university_name ilike '").append(filterDto.getUniversityName()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getEntranceYear())) {
                     if (isJoin) {
-                        query.append(" and entrance_year = ").append(filterDto.getEntranceYear());
+                        query.append(" and entrance_year ilike '").append(filterDto.getEntranceYear()).append("'");
                     }
-                    query.append("entrance_year = ").append(filterDto.getEntranceYear());
+                    query.append("entrance_year ilike '").append(filterDto.getEntranceYear()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getGraduationYear())) {
                     if (isJoin) {
-                        query.append(" and graduation_year = ").append(filterDto.getGraduationYear());
+                        query.append(" and graduation_year ilike '").append(filterDto.getGraduationYear()).append("'");
                     }
-                    query.append("graduation_year = ").append(filterDto.getGraduationYear());
+                    query.append("graduation_year ilike '").append(filterDto.getGraduationYear()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getFaculty())) {
                     if (isJoin) {
-                        query.append(" and faculty = ").append(filterDto.getFaculty());
+                        query.append(" and faculty ilike '").append(filterDto.getFaculty()).append("'");
                     }
-                    query.append("faculty = ").append(filterDto.getFaculty());
+                    query.append("faculty ilike '").append(filterDto.getFaculty()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getSpeciality())) {
                     if (isJoin) {
-                        query.append(" and speciality = ").append(filterDto.getSpeciality());
+                        query.append(" and speciality ilike '").append(filterDto.getSpeciality()).append("'");
                     }
-                    query.append("speciality = ").append(filterDto.getSpeciality());
+                    query.append("speciality ilike '").append(filterDto.getSpeciality()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getStudyType())) {
                     if (isJoin) {
-                        query.append(" and study_type = ").append(filterDto.getStudyType());
+                        query.append(" and study_type ilike '").append(filterDto.getStudyType()).append("'");
                     }
-                    query.append("study_type = ").append(filterDto.getStudyType());
+                    query.append("study_type ilike '").append(filterDto.getStudyType()).append("'");
                     isJoin = true;
                 }
 
 
                 if (Objects.nonNull(filterDto.getAcademicType())) {
                     if (isJoin) {
-                        query.append(" and academic_type = ").append(filterDto.getAcademicType());
+                        query.append(" and academic_type ilike '").append(filterDto.getAcademicType()).append("'");
                     }
-                    query.append("academic_type = ").append(filterDto.getAcademicType());
+                    query.append("academic_type ilike '").append(filterDto.getAcademicType()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getDiplomaSerial())) {
                     if (isJoin) {
-                        query.append(" and diploma_serial = ").append(filterDto.getDiplomaSerial());
+                        query.append(" and diploma_serial ilike '").append(filterDto.getDiplomaSerial()).append("'");
                     }
-                    query.append("diploma_serial = ").append(filterDto.getDiplomaSerial());
+                    query.append("diploma_serial ilike '").append(filterDto.getDiplomaSerial()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getDiplomaRegistrationNumber())) {
                     if (isJoin) {
-                        query.append(" and diploma_registration_number = ").append(filterDto.getDiplomaRegistrationNumber());
+                        query.append(" and diploma_registration_number ilike '").append(filterDto.getDiplomaRegistrationNumber()).append("'");
                     }
-                    query.append("diploma_registration_number = ").append(filterDto.getDiplomaRegistrationNumber());
+                    query.append("diploma_registration_number ilike '").append(filterDto.getDiplomaRegistrationNumber()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getGivenDate())) {
                     if (isJoin) {
-                        query.append(" and given_date = ").append(filterDto.getGivenDate());
+                        query.append(" and given_date ilike '").append(filterDto.getGivenDate()).append("'");
                     }
-                    query.append("given_date = ").append(filterDto.getGivenDate());
+                    query.append("given_date ilike '").append(filterDto.getGivenDate()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getAcademicLevel())) {
                     if (isJoin) {
-                        query.append(" and academic_level = ").append(filterDto.getAcademicLevel());
+                        query.append(" and academic_level ilike '").append(filterDto.getAcademicLevel()).append("'");
                     }
-                    query.append("academic_level = ").append(filterDto.getAcademicLevel());
+                    query.append("academic_level ilike '").append(filterDto.getAcademicLevel()).append("'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getAppendixNumber())) {
                     if (isJoin) {
-                        query.append(" and appendix_number = ").append(filterDto.getAppendixNumber());
+                        query.append(" and appendix_number ilike '").append(filterDto.getAppendixNumber()).append("'");
                     }
-                    query.append("appendix_number = ").append(filterDto.getAppendixNumber());
+                    query.append("appendix_number ilike '").append(filterDto.getAppendixNumber()).append("'");
                 }
 
                 query.append(" order by entrance_year desc limit 50");
@@ -153,22 +154,23 @@ public class StudentService
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
 
-                    StudentDto studentDto = new StudentDto();
+                    StudentDto studentDto = StudentDto.builder()
+                            .fullName(resultSet.getString("full_name"))
+                            .universityName(resultSet.getString("university_name"))
+                            .entranceYear(resultSet.getString("entrance_year"))
+                            .graduationYear(resultSet.getString("graduation_year"))
+                            .faculty(resultSet.getString("faculty"))
+                            .speciality(resultSet.getString("speciality"))
+                            .studyType(resultSet.getString("study_type"))
+                            .academicType(resultSet.getString("academic_type"))
+                            .diplomaSerial(resultSet.getString("diploma_serial"))
+                            .diplomaRegistrationNumber(resultSet.getString("diploma_registration_number"))
+                            .givenDate(resultSet.getString("given_date"))
+                            .academicLevel(resultSet.getString("academic_level"))
+                            .appendixNumber(resultSet.getString("appendix_number"))
+                            .organizationId(resultSet.getLong("organization_id"))
+                            .build();
                     studentDto.setId(resultSet.getLong("id"));
-                    studentDto.setFullName(resultSet.getString("full_name"));
-                    studentDto.setUniversityName(resultSet.getString("university_name"));
-                    studentDto.setEntranceYear(resultSet.getString("entrance_year"));
-                    studentDto.setGraduationYear(resultSet.getString("graduation_year"));
-                    studentDto.setFaculty(resultSet.getString("faculty"));
-                    studentDto.setSpeciality(resultSet.getString("speciality"));
-                    studentDto.setStudyType(resultSet.getString("study_type"));
-                    studentDto.setAcademicType(resultSet.getString("academic_type"));
-                    studentDto.setDiplomaSerial(resultSet.getString("diploma_serial"));
-                    studentDto.setDiplomaRegistrationNumber(resultSet.getString("diploma_registration_number"));
-                    studentDto.setGivenDate(resultSet.getString("given_date"));
-                    studentDto.setAcademicLevel(resultSet.getString("academic_level"));
-                    studentDto.setAppendixNumber(resultSet.getString("appendix_number"));
-                    studentDto.setOrganizationId(resultSet.getLong("organization_id"));
 
                     returnStudent.add(studentDto);
 
@@ -200,8 +202,7 @@ public class StudentService
 
     @Override
     public ResponseEntity<DataDto<List<StudentDto>>> getAll() {
-        List<StudentDto> studentDtoList = mapper.toDto(repository.findAllByCount());
-        return new ResponseEntity<>(new DataDto<>(studentDtoList, (long) studentDtoList.size()));
+        return new ResponseEntity<>(new DataDto<>(mapper.toDto(repository.findAllByCount())));
     }
 
     @Override
