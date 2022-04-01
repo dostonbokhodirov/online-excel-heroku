@@ -11,7 +11,7 @@ import uz.excel.onlineexcel.dto.base.BaseDto;
 @NoArgsConstructor
 public class AuthUserCreateDto implements BaseDto {
 
-    private String userName;
+    private String username;
 
     private String password;
 

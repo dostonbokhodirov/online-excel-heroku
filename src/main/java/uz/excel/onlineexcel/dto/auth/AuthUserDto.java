@@ -11,7 +11,7 @@ public class AuthUserDto extends GenericDto {
 //
 //    private String password;
 
-    private String userName;
+    private String username;
 
     private String password;
 

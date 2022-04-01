@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 public class LoginDto {
 
-    private String userName;
+    private String username;
 
     private String password;
 }
