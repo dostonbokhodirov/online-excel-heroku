@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 
@@ -49,10 +50,11 @@ public class AuthService
 
     @Override
     public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
-//        AuthUser user = repository.findByUsername(phone).orElseThrow(() -> {
-//            throw new UsernameNotFoundException("User not found");
-//        });
-        AuthUser user = repository.findByUsername(phone).get();
+        AuthUser user = new AuthUser();
+        Optional<AuthUser> optional = repository.findByUsername(phone);
+        if(optional.isPresent()) {
+            user = optional.get();
+        }
         return User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
@@ -66,7 +68,6 @@ public class AuthService
     }
 
     public ResponseEntity<DataDto<SessionDto>> getToken(LoginDto dto) {
-
         try {
             HttpClient httpclient = HttpClientBuilder.create().build();
             HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
