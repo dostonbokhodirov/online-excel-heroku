@@ -25,12 +25,19 @@ spring:
       name: admin
       password: admin123
 
+#service:
+#  prop:
+#    protocol: http
+#    ip: localhost
+#    port: 8080
+#    url: boom.uz
+
 service:
   prop:
-    protocol: http
-    ip: localhost
-    port: 8080
-    url: boom.uz
+    protocol: https
+    ip:
+    port:
+    url: https://online-excel-heroku.herokuapp.com
 
 api:
   info:

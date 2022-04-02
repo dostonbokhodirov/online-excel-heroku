@@ -70,8 +70,7 @@ public class AuthService
     public ResponseEntity<DataDto<SessionDto>> getToken(LoginDto dto) {
         try {
             HttpClient httpclient = HttpClientBuilder.create().build();
-//            HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
-            HttpPost httppost = new HttpPost("http://ec2-52-73-155-171.compute-1.amazonaws.com:5432/login");
+            HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
             byte[] bytes = objectMapper.writeValueAsBytes(dto);
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
             httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");
