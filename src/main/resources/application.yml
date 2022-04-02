@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-54-160-109-68.compute-1.amazonaws.com:5432/db26hfv4nq7p77
-    username: bdnyqqmxgxvrnu
-    password: 79dedd3d3fa8976e89c4b112bbcff2ac5a320fb619ce4234cf8554996e6cb560
+    url: jdbc:postgresql://ec2-52-73-155-171.compute-1.amazonaws.com:5432/deld1maj6dmfp
+    username: nbiytbfwowffis
+    password: 90378041d02ad584facd7df21922e557e997368def70ff5eb65168bf858b9448
 
 #    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://localhost:5432/online_excel
