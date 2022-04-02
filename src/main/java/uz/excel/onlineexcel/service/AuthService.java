@@ -70,7 +70,8 @@ public class AuthService
     public ResponseEntity<DataDto<SessionDto>> getToken(LoginDto dto) {
         try {
             HttpClient httpclient = HttpClientBuilder.create().build();
-            HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
+//            HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
+            HttpPost httppost = new HttpPost("https://online-excel-heroku.herokuapp.com/login");
             byte[] bytes = objectMapper.writeValueAsBytes(dto);
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
             httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");
