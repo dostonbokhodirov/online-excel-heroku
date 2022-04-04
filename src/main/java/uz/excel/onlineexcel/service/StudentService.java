@@ -48,7 +48,7 @@ public class StudentService
                 Connection connection = DriverManager.getConnection(properties.getUrl(), properties.getUsername(), properties.getPassword());
 
                 boolean isJoin = false;
-                StringBuilder query = new StringBuilder("select  *  from auth.student where ");
+                StringBuilder query = new StringBuilder("select  *  from public.student where ");
 
                 if (Objects.nonNull(filterDto.getFullName())) {
                     query.append("full_name ilike '%").append(filterDto.getFullName()).append("%'");
@@ -124,7 +124,8 @@ public class StudentService
                     if (isJoin) {
                         query.append(" and diploma_registration_number ilike '%").append(filterDto.getDiplomaRegistrationNumber()).append("%%'");
                     }
-                    query.append("diploma_registration_number ilike '%%").append(filterDto.getDiplomaRegistrationNumber()).append("%%'");
+                    query.append("diploma_registration_number ilike '%")
+                            .append(filterDto.getDiplomaRegistrationNumber()).append("%'");
                     isJoin = true;
                 }
 
@@ -159,6 +160,7 @@ public class StudentService
                 while (resultSet.next()) {
 
                     StudentDto studentDto = StudentDto.builder()
+                            .id(resultSet.getLong("id"))
                             .fullName(resultSet.getString("full_name"))
                             .universityName(resultSet.getString("university_name"))
                             .entranceYear(resultSet.getString("entrance_year"))
