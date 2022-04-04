@@ -27,7 +27,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExcelFileService implements BaseService {
 
-    StudentRepository repository;
+    private final StudentRepository repository;
 
 
     public String createExcelFile(List<StudentDto> list) {

@@ -37,7 +37,7 @@ public class StudentService
 
     public ResponseEntity<DataDto<List<StudentDto>>> getByFilter(FilterDto filterDto) {
 
-        List<StudentDto> returnStudent = new ArrayList<>(Collections.emptyList());
+        List<StudentDto> students = new ArrayList<>(Collections.emptyList());
 
 
         if (Objects.isNull(filterDto)) {
@@ -48,58 +48,64 @@ public class StudentService
                 Connection connection = DriverManager.getConnection(properties.getUrl(), properties.getUsername(), properties.getPassword());
 
                 boolean isJoin = false;
-                StringBuilder query = new StringBuilder("select  *  from public.student where ");
+                StringBuilder query = new StringBuilder("select  *  from public.student where");
 
                 if (Objects.nonNull(filterDto.getFullName())) {
-                    query.append("full_name ilike '%").append(filterDto.getFullName()).append("%'");
+                    query.append(" full_name ilike '%").append(filterDto.getFullName()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getUniversityName())) {
                     if (isJoin) {
                         query.append(" and university_name ilike '%").append(filterDto.getUniversityName()).append("%'");
+                    } else {
+                        query.append(" university_name ilike '%").append(filterDto.getUniversityName()).append("%'");
                     }
-                    query.append("university_name ilike '%").append(filterDto.getUniversityName()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getEntranceYear())) {
                     if (isJoin) {
                         query.append(" and entrance_year ilike '%").append(filterDto.getEntranceYear()).append("%'");
+                    } else {
+                        query.append(" entrance_year ilike '%").append(filterDto.getEntranceYear()).append("%'");
                     }
-                    query.append("entrance_year ilike '%").append(filterDto.getEntranceYear()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getGraduationYear())) {
                     if (isJoin) {
                         query.append(" and graduation_year ilike '%").append(filterDto.getGraduationYear()).append("%'");
+                    } else {
+                        query.append(" graduation_year ilike '%").append(filterDto.getGraduationYear()).append("%'");
                     }
-                    query.append("graduation_year ilike '%").append(filterDto.getGraduationYear()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getFaculty())) {
                     if (isJoin) {
                         query.append(" and faculty ilike '%").append(filterDto.getFaculty()).append("%'");
+                    } else {
+                        query.append(" faculty ilike '%").append(filterDto.getFaculty()).append("%'");
                     }
-                    query.append("faculty ilike '%").append(filterDto.getFaculty()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getSpeciality())) {
                     if (isJoin) {
                         query.append(" and speciality ilike '%").append(filterDto.getSpeciality()).append("%'");
+                    } else {
+                        query.append(" speciality ilike '%").append(filterDto.getSpeciality()).append("%'");
                     }
-                    query.append("speciality ilike '%").append(filterDto.getSpeciality()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getStudyType())) {
                     if (isJoin) {
                         query.append(" and study_type ilike '%").append(filterDto.getStudyType()).append("%'");
+                    } else {
+                        query.append(" study_type ilike '%").append(filterDto.getStudyType()).append("%'");
                     }
-                    query.append("study_type ilike '%").append(filterDto.getStudyType()).append("%'");
                     isJoin = true;
                 }
 
@@ -107,53 +113,56 @@ public class StudentService
                 if (Objects.nonNull(filterDto.getAcademicType())) {
                     if (isJoin) {
                         query.append(" and academic_type ilike '%").append(filterDto.getAcademicType()).append("%'");
+                    } else {
+                        query.append(" academic_type ilike '%").append(filterDto.getAcademicType()).append("%'");
                     }
-                    query.append("academic_type ilike '%").append(filterDto.getAcademicType()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getDiplomaSerial())) {
                     if (isJoin) {
                         query.append(" and diploma_serial ilike '%").append(filterDto.getDiplomaSerial()).append("%'");
+                    } else {
+                        query.append(" diploma_serial ilike '%").append(filterDto.getDiplomaSerial()).append("%'");
                     }
-                    query.append("diploma_serial ilike '%").append(filterDto.getDiplomaSerial()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getDiplomaRegistrationNumber())) {
                     if (isJoin) {
                         query.append(" and diploma_registration_number ilike '%").append(filterDto.getDiplomaRegistrationNumber()).append("%%'");
+                    } else {
+                        query.append(" diploma_registration_number ilike '%")
+                                .append(filterDto.getDiplomaRegistrationNumber()).append("%'");
                     }
-                    query.append("diploma_registration_number ilike '%")
-                            .append(filterDto.getDiplomaRegistrationNumber()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getGivenDate())) {
                     if (isJoin) {
                         query.append(" and given_date ilike '%").append(filterDto.getGivenDate()).append("%'");
+                    } else {
+                        query.append(" given_date ilike '%").append(filterDto.getGivenDate()).append("%'");
                     }
-                    query.append("given_date ilike '%").append(filterDto.getGivenDate()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getAcademicLevel())) {
                     if (isJoin) {
                         query.append(" and academic_level ilike '%").append(filterDto.getAcademicLevel()).append("%'");
+                    } else {
+                        query.append(" academic_level ilike '%").append(filterDto.getAcademicLevel()).append("%'");
                     }
-                    query.append("academic_level ilike '%").append(filterDto.getAcademicLevel()).append("%'");
                     isJoin = true;
                 }
 
                 if (Objects.nonNull(filterDto.getAppendixNumber())) {
                     if (isJoin) {
                         query.append(" and appendix_number ilike '%").append(filterDto.getAppendixNumber()).append("%'");
+                    } else {
+                        query.append(" appendix_number ilike '%").append(filterDto.getAppendixNumber()).append("%'");
                     }
-                    query.append("appendix_number ilike '%").append(filterDto.getAppendixNumber()).append("%'");
                 }
-
-                query.append(" order by entrance_year desc limit 50");
-
 
                 PreparedStatement statement = connection.prepareStatement(query.toString());
                 ResultSet resultSet = statement.executeQuery();
@@ -177,7 +186,7 @@ public class StudentService
                             .organizationId(resultSet.getLong("organization_id"))
                             .build();
 
-                    returnStudent.add(studentDto);
+                    students.add(studentDto);
 
                 }
 
@@ -185,7 +194,7 @@ public class StudentService
                 e.printStackTrace();
             }
 
-            return new ResponseEntity<>(new DataDto<>(returnStudent));
+            return new ResponseEntity<>(new DataDto<>(students, (long) students.size()));
         }
 
     }
@@ -208,7 +217,7 @@ public class StudentService
     @Override
     public ResponseEntity<DataDto<List<StudentDto>>> getAll() {
         List<Student> studentList = repository.findAllByCount();
-        return new ResponseEntity<>(new DataDto<>(mapper.toDto(studentList)));
+        return new ResponseEntity<>(new DataDto<>(mapper.toDto(studentList), (long) studentList.size()));
     }
 
     @Override
