@@ -31,24 +31,6 @@ public class ExcelFileController extends AbstractController<ExcelFileService> {
     @PostMapping("/download")
     public ResponseEntity<InputStreamResource> getExcelFile(@RequestBody ArrayList<StudentDto> dtoList) throws IOException {
 
-//        List<StudentDto> dtoList = new ArrayList<>();
-//        StudentDto dto = StudentDto.builder()
-//                .fullName("a")
-//                .universityName("a")
-//                .entranceYear("a")
-//                .graduationYear("a")
-//                .faculty("a")
-//                .speciality("a")
-//                .studyType("a")
-//                .academicType("a")
-//                .diplomaSerial("a")
-//                .diplomaRegistrationNumber("a")
-//                .givenDate("a")
-//                .academicLevel("a")
-//                .appendixNumber("a")
-//                .organizationId(1L).build();
-//        dtoList.add(dto);
-
         String excelFileName = service.createExcelFile(dtoList);
         MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, excelFileName);
         File file = new File(excelFileName);
