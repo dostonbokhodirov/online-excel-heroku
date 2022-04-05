@@ -70,7 +70,9 @@ public class AuthService
     public ResponseEntity<DataDto<SessionDto>> getToken(LoginDto dto) {
         try {
             HttpClient httpclient = HttpClientBuilder.create().build();
-            HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
+            String serverUrl = serverProperties.getServerUrl();
+            String uri = serverUrl + "/api/login";
+            HttpPost httppost = new HttpPost(uri);
             byte[] bytes = objectMapper.writeValueAsBytes(dto);
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
             httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");

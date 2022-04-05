@@ -17,10 +17,8 @@ public class ServerProperties {
 
     private String protocol;
 
-//    public String getServerUrl() {
-//        return this.protocol + "://" + this.ip + ":" + this.port;
-//    }
     public String getServerUrl() {
-        return this.protocol + "://" + this.url;
+//        return this.protocol + "://" + this.ip + ":" + this.port;
+        return "https://online-excel-heroku.herokuapp.com";
     }
 }
