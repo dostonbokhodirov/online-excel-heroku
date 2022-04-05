@@ -47,11 +47,10 @@ public class AuthService
         this.objectMapper = objectMapper;
     }
 
-
     @Override
-    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AuthUser user = new AuthUser();
-        Optional<AuthUser> optional = repository.findByUsername(phone);
+        Optional<AuthUser> optional = repository.findByUsername(username);
         if(optional.isPresent()) {
             user = optional.get();
         }
@@ -70,9 +69,7 @@ public class AuthService
     public ResponseEntity<DataDto<SessionDto>> getToken(LoginDto dto) {
         try {
             HttpClient httpclient = HttpClientBuilder.create().build();
-            String serverUrl = serverProperties.getServerUrl();
-            String uri = serverUrl + "/api/login";
-            HttpPost httppost = new HttpPost(uri);
+            HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
             byte[] bytes = objectMapper.writeValueAsBytes(dto);
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
             httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");

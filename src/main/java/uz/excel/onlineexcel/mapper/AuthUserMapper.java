@@ -25,7 +25,6 @@ public interface AuthUserMapper extends BaseMapper<AuthUser,
     List<AuthUserDto> toDto(List<AuthUser> e);
 
     @Override
-    @Mapping(target="picture",ignore = true)
     @Mapping(target="password",ignore = true)
     AuthUser fromCreateDto(AuthUserCreateDto authUserCreateDto);
 

@@ -16,5 +16,5 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, BaseR
 
     Optional<AuthUser> findByPhone(String phone);
 
-    Optional<AuthUser> findByUsername(String phone);
+    Optional<AuthUser> findByUsername(String username);
 }

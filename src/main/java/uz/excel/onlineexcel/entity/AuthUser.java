@@ -25,7 +25,7 @@ public class AuthUser extends Auditable implements GrantedAuthority {
     @Column(unique = true)
     private String phone;
 
-    @Column
+    @Column(unique = true)
     private String username;
 
     @Column
