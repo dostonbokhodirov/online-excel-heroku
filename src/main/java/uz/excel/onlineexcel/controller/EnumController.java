@@ -18,6 +18,11 @@ public class EnumController extends AbstractController<EnumService> {
         super(service);
     }
 
+    @GetMapping("study-type-all")
+    public ResponseEntity<DataDto<List<String>>> getAllStudyTypes() {
+        return service.getAllStudyTypes("all");
+    }
+
     @GetMapping("study-type-latin")
     public ResponseEntity<DataDto<List<String>>> getAllStudyTypesLatin() {
         return service.getAllStudyTypes("latin");
@@ -28,6 +33,11 @@ public class EnumController extends AbstractController<EnumService> {
         return service.getAllStudyTypes("cyrillic");
     }
 
+    @GetMapping("academic-type-all")
+    public ResponseEntity<DataDto<List<String>>> getAllAcademicTypes() {
+        return service.getAllAcademicTypes("all");
+    }
+
     @GetMapping("academic-type-latin")
     public ResponseEntity<DataDto<List<String>>> getAllAcademicTypesLatin() {
         return service.getAllAcademicTypes("latin");
@@ -36,6 +46,11 @@ public class EnumController extends AbstractController<EnumService> {
     @GetMapping("academic-type-cyrillic")
     public ResponseEntity<DataDto<List<String>>> getAllAcademicTypesCyrillic() {
         return service.getAllAcademicTypes("cyrillic");
+    }
+
+    @GetMapping("academic-level-all")
+    public ResponseEntity<DataDto<List<String>>> getAllAcademicLevels() {
+        return service.getAllAcademicLevels("all");
     }
 
     @GetMapping("academic-level-latin")
