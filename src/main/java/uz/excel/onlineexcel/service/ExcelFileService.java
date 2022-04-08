@@ -16,10 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -148,47 +145,37 @@ public class ExcelFileService implements BaseService {
 
                     String studyType = getValueFromCell(row, 7).toLowerCase();
 
-                    String s = StudyType.GRANT.getCyrillicLow();
-                    if (studyType.startsWith(s)) {
-                        studyType = StudyType.GRANT.getCyrillic();
-                    } else if (studyType.startsWith(StudyType.GRANT.getLatinLow())) {
-                        studyType = StudyType.GRANT.getLatin();
-                    } else if (studyType.startsWith(StudyType.CONTRACT.getCyrillicLow())) {
-                        studyType = StudyType.CONTRACT.getCyrillic();
-                    } else if (studyType.startsWith(StudyType.CONTRACT.getLatinLow())) {
-                        studyType = StudyType.CONTRACT.getLatin();
-                    }
+                    List<String> values = new ArrayList<>();
+                    Arrays.stream(StudyType.values()).forEach(value -> {
+                        values.add(value.getLatin());
+                        values.add(value.getCyrillic());
+                    });
+
+                    studyType = checkValue(values, studyType);
 
                     String academicType = getValueFromCell(row, 8).toLowerCase();
 
-                    if (academicType.startsWith(AcademicType.FULL_TIME.getCyrillic().toLowerCase().substring(0, 3))) {
-                        academicType = AcademicType.FULL_TIME.getCyrillic();
-                    } else if (academicType.startsWith(AcademicType.FULL_TIME.getLatinLow())) {
-                        academicType = AcademicType.FULL_TIME.getLatin();
-                    } else if (academicType.startsWith(AcademicType.EVENING.getCyrillicLow())) {
-                        academicType = AcademicType.EVENING.getCyrillic();
-                    } else if (academicType.startsWith(AcademicType.EVENING.getLatinLow())) {
-                        academicType = AcademicType.EVENING.getLatin();
-                    } else if (academicType.startsWith(AcademicType.DISTANCE.getCyrillicLow())) {
-                        academicType = AcademicType.DISTANCE.getCyrillic();
-                    } else if (academicType.startsWith(AcademicType.DISTANCE.getLatinLow())) {
-                        academicType = AcademicType.DISTANCE.getLatin();
-                    }
+                    List<String> values1 = new ArrayList<>();
+                    Arrays.stream(AcademicType.values()).forEach(value -> {
+                        values1.add(value.getLatin());
+                        values1.add(value.getCyrillic());
+                    });
+
+                    academicType = checkValue(values1, academicType);
 
                     String diplomaSerial = getValueFromCell(row, 9);
                     String diplomaRegistrationNumber = getValueFromCell(row, 10);
                     String givenDate = getValueFromCell(row, 11);
+
                     String academicLevel = getValueFromCell(row, 12).toLowerCase();
 
-                    if (academicLevel.startsWith(AcademicLevel.BACHELOR.getCyrillicLow())) {
-                        academicLevel = AcademicLevel.BACHELOR.getCyrillic();
-                    } else if (academicLevel.startsWith(AcademicLevel.BACHELOR.getLatinLow())) {
-                        academicLevel = AcademicLevel.BACHELOR.getLatin();
-                    } else if (academicLevel.startsWith(AcademicLevel.MASTER.getCyrillicLow())) {
-                        academicLevel = AcademicLevel.MASTER.getCyrillic();
-                    } else if (academicLevel.startsWith(AcademicLevel.MASTER.getLatinLow())) {
-                        academicLevel = AcademicLevel.MASTER.getLatin();
-                    }
+                    List<String> values2 = new ArrayList<>();
+                    Arrays.stream(AcademicLevel.values()).forEach(value -> {
+                        values2.add(value.getLatin());
+                        values2.add(value.getCyrillic());
+                    });
+
+                    academicLevel = checkValue(values2, academicLevel);
 
                     String appendixNumber = getValueFromCell(row, 13);
                     Student student = new Student();
@@ -243,6 +230,14 @@ public class ExcelFileService implements BaseService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private String checkValue(List<String> typeValues, String value) {
+        return typeValues
+                .stream()
+                .filter(typeValue -> value.startsWith(typeValue.toLowerCase().substring(0, 2)))
+                .findFirst()
+                .orElse(value);
     }
 
     private String getValueFromCell(XSSFRow row, int cellIndex) {
