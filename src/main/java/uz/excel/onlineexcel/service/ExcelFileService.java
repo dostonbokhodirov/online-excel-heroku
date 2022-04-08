@@ -250,7 +250,7 @@ public class ExcelFileService implements BaseService {
 
         if (cellType.equals(CellType.STRING)) {
             String value = cell.getStringCellValue();
-            if (Objects.isNull(value) || value.isBlank() || Objects.equals(value, "null")) {
+            if (Objects.isNull(value) || value.isEmpty() || Objects.equals(value, "null")) {
                 return "-";
             }
             return value;
