@@ -288,14 +288,16 @@ public class ExcelFileService implements BaseService {
         }
     }
 
-    private CellStyle getCellStyle(XSSFWorkbook workbook, Font font1) {
+    private CellStyle getCellStyle(XSSFWorkbook workbook, Font font) {
         CellStyle style = workbook.createCellStyle();
-        style.setFont(font1);
         style.setBorderBottom(BorderStyle.THIN);
         style.setBorderTop(BorderStyle.THIN);
         style.setBorderRight(BorderStyle.THIN);
         style.setBorderLeft(BorderStyle.THIN);
         style.setAlignment(HorizontalAlignment.CENTER);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setWrapText(true);
+        style.setFont(font);
         return style;
     }
 }
