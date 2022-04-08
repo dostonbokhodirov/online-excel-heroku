@@ -271,7 +271,7 @@ public class ExcelFileService implements BaseService {
             return cell.getErrorCellString();
         } else {
             String value = String.valueOf(cell.getDateCellValue());
-            if (Objects.isNull(value) || value.isBlank() || Objects.equals(value, "null")) {
+            if (Objects.isNull(value) || value.isEmpty() || Objects.equals(value, "null")) {
                 return "-";
             }
             return value;
