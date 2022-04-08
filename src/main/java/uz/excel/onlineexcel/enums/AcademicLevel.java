@@ -13,4 +13,12 @@ public enum AcademicLevel {
     private final String latin;
     private final String cyrillic;
 
+    public  String getLatinLow() {
+        return latin.toLowerCase().substring(0, 2);
+    }
+
+    public String getCyrillicLow() {
+        return cyrillic.toLowerCase().substring(0, 2);
+    }
+
 }

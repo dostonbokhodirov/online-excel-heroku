@@ -1,10 +1,8 @@
 package uz.excel.onlineexcel.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.excel.onlineexcel.dto.student.StudentDto;
 import uz.excel.onlineexcel.entity.Student;
@@ -148,69 +146,51 @@ public class ExcelFileService implements BaseService {
                     String faculty = getValueFromCell(row, 5);
                     String speciality = getValueFromCell(row, 6);
 
+                    String studyType = getValueFromCell(row, 7).toLowerCase();
 
-                    String studyType = getValueFromCell(row, 7);
-
-                    if (studyType.toLowerCase().startsWith(
-                            StudyType.GRANT.getCyrillic().toLowerCase().substring(0, 3))) {
+                    String s = StudyType.GRANT.getCyrillicLow();
+                    if (studyType.startsWith(s)) {
                         studyType = StudyType.GRANT.getCyrillic();
-                    } else if (studyType.toLowerCase().startsWith(
-                            StudyType.GRANT.getLatin().toLowerCase().substring(0, 3))) {
+                    } else if (studyType.startsWith(StudyType.GRANT.getLatinLow())) {
                         studyType = StudyType.GRANT.getLatin();
-                    } else if (studyType.toLowerCase().startsWith(
-                            StudyType.CONTRACT.getCyrillic().toLowerCase().substring(0, 3))) {
+                    } else if (studyType.startsWith(StudyType.CONTRACT.getCyrillicLow())) {
                         studyType = StudyType.CONTRACT.getCyrillic();
-                    } else if (studyType.toLowerCase().startsWith(
-                            StudyType.CONTRACT.getLatin().toLowerCase().substring(0, 3))) {
+                    } else if (studyType.startsWith(StudyType.CONTRACT.getLatinLow())) {
                         studyType = StudyType.CONTRACT.getLatin();
                     }
 
-                    String academicType = getValueFromCell(row, 8);
+                    String academicType = getValueFromCell(row, 8).toLowerCase();
 
-                    if (academicType.toLowerCase().startsWith(
-                            AcademicType.FULL_TIME.getCyrillic().toLowerCase().substring(0, 3))) {
+                    if (academicType.startsWith(AcademicType.FULL_TIME.getCyrillic().toLowerCase().substring(0, 3))) {
                         academicType = AcademicType.FULL_TIME.getCyrillic();
-                    } else if (academicType.toLowerCase().startsWith(
-                            AcademicType.FULL_TIME.getLatin().toLowerCase().substring(0, 3))) {
+                    } else if (academicType.startsWith(AcademicType.FULL_TIME.getLatinLow())) {
                         academicType = AcademicType.FULL_TIME.getLatin();
-                    } else if (academicType.toLowerCase().startsWith(
-                            AcademicType.EVENING.getCyrillic().toLowerCase().substring(0, 3))) {
+                    } else if (academicType.startsWith(AcademicType.EVENING.getCyrillicLow())) {
                         academicType = AcademicType.EVENING.getCyrillic();
-                    } else if (academicType.toLowerCase().startsWith(
-                            AcademicType.EVENING.getLatin().toLowerCase().substring(0, 3))) {
+                    } else if (academicType.startsWith(AcademicType.EVENING.getLatinLow())) {
                         academicType = AcademicType.EVENING.getLatin();
-                    } else if (academicType.toLowerCase().startsWith(
-                            AcademicType.DISTANCE.getCyrillic().toLowerCase().substring(0, 3))) {
+                    } else if (academicType.startsWith(AcademicType.DISTANCE.getCyrillicLow())) {
                         academicType = AcademicType.DISTANCE.getCyrillic();
-                    } else if (academicType.toLowerCase().startsWith(
-                            AcademicType.DISTANCE.getLatin().toLowerCase().substring(0, 3))) {
+                    } else if (academicType.startsWith(AcademicType.DISTANCE.getLatinLow())) {
                         academicType = AcademicType.DISTANCE.getLatin();
                     }
-
 
                     String diplomaSerial = getValueFromCell(row, 9);
                     String diplomaRegistrationNumber = getValueFromCell(row, 10);
                     String givenDate = getValueFromCell(row, 11);
+                    String academicLevel = getValueFromCell(row, 12).toLowerCase();
 
-                    String academicLevel = getValueFromCell(row, 12);
-
-                    if (academicLevel.toLowerCase().startsWith(
-                            AcademicLevel.BACHELOR.getCyrillic().toLowerCase().substring(0, 3))) {
+                    if (academicLevel.startsWith(AcademicLevel.BACHELOR.getCyrillicLow())) {
                         academicLevel = AcademicLevel.BACHELOR.getCyrillic();
-                    } else if (academicLevel.toLowerCase().startsWith(
-                            AcademicLevel.BACHELOR.getLatin().toLowerCase().substring(0, 3))) {
+                    } else if (academicLevel.startsWith(AcademicLevel.BACHELOR.getLatinLow())) {
                         academicLevel = AcademicLevel.BACHELOR.getLatin();
-                    } else if (academicLevel.toLowerCase().startsWith(
-                            AcademicLevel.MASTER.getCyrillic().toLowerCase().substring(0, 3))) {
+                    } else if (academicLevel.startsWith(AcademicLevel.MASTER.getCyrillicLow())) {
                         academicLevel = AcademicLevel.MASTER.getCyrillic();
-                    } else if (academicLevel.toLowerCase().startsWith(
-                            AcademicLevel.MASTER.getLatin().toLowerCase().substring(0, 3))) {
+                    } else if (academicLevel.startsWith(AcademicLevel.MASTER.getLatinLow())) {
                         academicLevel = AcademicLevel.MASTER.getLatin();
                     }
 
-
                     String appendixNumber = getValueFromCell(row, 13);
-
                     Student student = new Student();
                     student.setUniversityName(universityName);
                     student.setFullName(fullName);
@@ -240,6 +220,12 @@ public class ExcelFileService implements BaseService {
                                                     && student.getDiplomaRegistrationNumber().equals("null")
                                                     && student.getEntranceYear().equals("null")
 
+                                    ) || (
+                                            student.getFullName().equals("-")
+                                                    && student.getDiplomaSerial().equals("-")
+                                                    && student.getDiplomaRegistrationNumber().equals("-")
+                                                    && student.getEntranceYear().equals("-")
+
                                     )
                             )
                     ) {
@@ -263,12 +249,17 @@ public class ExcelFileService implements BaseService {
 
         XSSFCell cell = row.getCell(cellIndex);
         if (Objects.isNull(cell)) {
-            return "";
+            return "-";
         }
         CellType cellType = cell.getCellType();
 
         if (cellType.equals(CellType.STRING)) {
-            return cell.getStringCellValue();
+            String value = cell.getStringCellValue();
+            if (Objects.isNull(value) || value.isBlank() || Objects.equals(value, "null")) {
+                return "-";
+            }
+            return value;
+
         } else if (cellType.equals(CellType.NUMERIC)) {
             double numericCellValue = cell.getNumericCellValue();
             int intValue = (int) numericCellValue;
@@ -284,7 +275,11 @@ public class ExcelFileService implements BaseService {
         } else if (cellType.equals(CellType.ERROR)) {
             return cell.getErrorCellString();
         } else {
-            return String.valueOf(cell.getDateCellValue());
+            String value = String.valueOf(cell.getDateCellValue());
+            if (Objects.isNull(value) || value.isBlank() || Objects.equals(value, "null")) {
+                return "-";
+            }
+            return value;
         }
     }
 
