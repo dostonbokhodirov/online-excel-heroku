@@ -49,5 +49,10 @@ public class StudentController extends AbstractController<StudentService> {
     public ResponseEntity<DataDto<List<StudentDto>>> getAllByFilter(@RequestBody FilterDto filterDto) {
         return service.getByFilter(filterDto);
     }
+    @GetMapping("filter-list")
+    public @ResponseBody List<StudentDto> getAllByFilterList(FilterDto filterDto) {
+        ResponseEntity<DataDto<List<StudentDto>>> response = service.getByFilter(filterDto);
+        return response.getData().getData();
+    }
 
 }
