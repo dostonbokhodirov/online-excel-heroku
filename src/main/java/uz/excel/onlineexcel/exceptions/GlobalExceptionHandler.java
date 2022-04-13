@@ -32,4 +32,10 @@ public class GlobalExceptionHandler {
                 (new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, e.getMessage(), webRequest)));
     }
 
+    @ExceptionHandler(value = {CustomSQLException.class})
+    public ResponseEntity<DataDto<AppErrorDto>> handleSQL(RuntimeException e, WebRequest webRequest) {
+        return new ResponseEntity<>
+                (new DataDto<>(new AppErrorDto(HttpStatus.CONFLICT, e.getMessage(), webRequest)));
+    }
+
 }

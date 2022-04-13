@@ -1,12 +1,14 @@
-package uz.excel.onlineexcel.dto;
+package uz.excel.onlineexcel.criteria;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springdoc.api.annotations.ParameterObject;
 
 @Getter
 @Setter
-public class FilterDto {
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class StudentCriteria {
 
     private String fullName;
 
@@ -33,7 +35,5 @@ public class FilterDto {
     private String academicLevel; //magistr yoki bakalavr
 
     private String appendixNumber; // ilova raqami
-
-
 
 }
