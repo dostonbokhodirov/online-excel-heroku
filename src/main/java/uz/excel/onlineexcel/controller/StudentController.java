@@ -40,11 +40,6 @@ public class StudentController extends AbstractController<StudentService> {
         return service.delete(id);
     }
 
-//    @GetMapping(value = "/list")
-//    public ResponseEntity<DataDto<List<StudentDto>>> getAll(StudentCriteria criteria) {
-//        return service.getAll(criteria);
-//    }
-
     @PostMapping(value = "/list")
     public ResponseEntity<DataDto<List<StudentDto>>> getAll(@RequestBody(required = false) StudentCriteria criteria) {
         return service.getAll(criteria);

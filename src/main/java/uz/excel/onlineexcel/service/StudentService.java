@@ -1,7 +1,5 @@
 package uz.excel.onlineexcel.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,7 +22,6 @@ import uz.excel.onlineexcel.service.base.BaseService;
 import uz.excel.onlineexcel.service.base.GenericCrudService;
 import uz.excel.onlineexcel.service.base.GenericService;
 
-import javax.validation.Valid;
 import java.sql.*;
 import java.util.*;
 
@@ -80,7 +77,6 @@ public class StudentService
     public ResponseEntity<DataDto<List<StudentDto>>> getAll() {
         Pageable pageable = PageRequest.of(0, 50, Sort.by("entranceYear").descending());
         List<Student> studentList = repository.findAll(pageable).getContent();
-//        List<Student> studentList = repository.findAllByCount();
         return new ResponseEntity<>(new DataDto<>(mapper.toDto(studentList), (long) studentList.size()));
     }
 
